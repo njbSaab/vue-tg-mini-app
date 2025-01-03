@@ -1,6 +1,6 @@
 <template>
   <div class="container tw-flex tw-flex-col">
-    <h1>tg app</h1>
+    <h1>tg app hello</h1>
     <div v-if="telegramUser">
       <p>Добро пожаловать, {{ telegramUser.first_name }}!</p>
       <p>Ваш Telegram ID: {{ telegramUser.id }}</p>
@@ -24,10 +24,12 @@ onMounted(() => {
     console.log("initData из Telegram:", telegram.initData);
 
     // Отправляем initData на сервер
-    fetch("https://your-backend-domain.com/api/users/verify-init-data", {
+    fetch("http://localhost:3082/api/users/verify-init-data", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ initData: telegram.initData }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ initData }),
     })
       .then((response) => response.json())
       .then((data) => {
